@@ -1,0 +1,17 @@
+#################################################
+# SMT Playbooks: Initial Server Setup
+#################################################
+
+# Run on Mac OS: (https://github.com/ansible/ansible/issues/76322)
+# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# ansible-playbook -i hosts.ini setup-new-instance-playbook.yml
+---
+- name: Setup Ubuntu Server
+  hosts: sample_server
+  become: true
+  roles:
+    - setup_ubuntu_server
+  vars:
+    target_user: sampy
+    ssh_public_key_paths:
+      - ~/.ssh/id_rsa.pub

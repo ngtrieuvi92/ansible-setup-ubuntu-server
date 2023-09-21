@@ -1,0 +1,13 @@
+# Set default git editor to Vim
+# - name: Setup default git editor to Vim
+#   ansible.builtin.command: git config --global core.editor "vim"
+#   become: true
+#   become_user: "{{target_user}}"
+
+# Disable password authentication for root
+# - name: Disable password authentication for root
+#   lineinfile:
+#     path: /etc/ssh/sshd_config
+#     state: present
+#     regexp: '^#?PermitRootLogin'
+#     line: 'PermitRootLogin prohibit-password'

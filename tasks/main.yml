@@ -1,0 +1,31 @@
+#################################################
+# SMTeam Playbook: Initial Server Setup
+#################################################
+---
+- name: Install Prerequisites
+  ansible.builtin.apt:
+    update_cache: yes
+  become: true
+
+# Install some necessary packages
+- name: Update apt
+  ansible.builtin.apt: update_cache=yes
+
+- name: Install required system packages
+  ansible.builtin.apt: name={{ necessary_packages }} state=latest
+
+# Create new user
+- import_tasks: create_user_group.yml
+  tags:
+    - user
+
+# Setup swap memory
+- import_tasks: setup_swap_memory.yml
+  tags:
+    - swap
+
+# Do some default configuration
+- import_tasks: setup_default_configuration.yml
+  become_user: "{{target_user}}"
+  tags:
+    - configure

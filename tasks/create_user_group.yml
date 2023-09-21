@@ -1,0 +1,41 @@
+
+# Sudo Group Setup
+- name: Make sure we have a 'ledx' group
+  group:
+    name: ledx
+    state: present
+
+- name: Allow 'ledx' group to have passwordless sudo
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%ledx'
+    line: '%ledx ALL=(ALL) NOPASSWD: ALL'
+    validate: '/usr/sbin/visudo -cf %s'
+
+# User + Key Setup
+- name: Create a new regular user with sudo privileges
+  user:
+    name: "{{ target_user }}"
+    state: present
+    groups: ledx
+    append: true
+    create_home: true
+    shell: /bin/bash
+
+- name: Ensure authorized_keys directory exists
+  file:
+    path: "/home/{{ target_user }}/.ssh"
+    state: directory
+    owner: "{{ target_user }}"
+    group: "{{ target_user }}"
+    mode: '0700'
+  become_user: "{{ target_user }}"
+
+- name: Add SSH public keys from files to authorized_keys
+  authorized_key:
+    user: "{{ target_user }}"
+    key: "{{ lookup('file', item) }}"
+    state: present
+  with_items: "{{ ssh_public_key_paths }}"
+  become_user: "{{ target_user }}"

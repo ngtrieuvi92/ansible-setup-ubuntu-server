@@ -1,0 +1,21 @@
+#################################################
+# SMTeam Playbook: Initial Server Setup
+#################################################
+---
+# Setup update ssh config
+- name: Install stormssh python package
+  pip:
+    name: stormssh
+  delegate_to: 127.0.0.1
+  become: false
+
+- name: Add a host in the configuration
+  community.general.ssh_config:
+    ssh_config_file: "{{local_ssh_config_file}}"
+    remote_user: "{{target_user}}"
+    hostname: "{{inventory_hostname}}.{{domain}}"
+    host: "{{ssh_group}}.{{inventory_hostname}}"
+    port: 22
+    state: present
+  delegate_to: 127.0.0.1
+  become: false
