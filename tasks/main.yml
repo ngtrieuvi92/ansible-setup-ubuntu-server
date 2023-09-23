@@ -11,7 +11,7 @@
 - name: Update apt
   ansible.builtin.apt: update_cache=yes
 
-- name: Install required system packages
+- name: Install systems packages
   ansible.builtin.apt: name={{ necessary_packages }} state=latest
 
 # Create new user

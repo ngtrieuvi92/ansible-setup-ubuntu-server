@@ -1,6 +1,5 @@
 ---
-necessary_packages: ['curl', 'vim', 'git', 'ufw', 'htop', 'iotop', 'apt-transport-https', 'acl']
-local_ssh_config_file: '~/.ssh/config'
+necessary_packages: ['curl', 'vim', 'git', 'ufw', 'htop', 'iotop', 'apt-transport-https', 'acl', 'python3-paramiko']
 swap_vars:
   size: 1G
   swappiness: 60

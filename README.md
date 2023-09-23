@@ -1,4 +1,5 @@
 # Initial Server Setup on Ubuntu 22.04 LST
+Explain more about this package ( Vietnamese version): [https://vinguyen.blog/cac-viec-nen-lam-sau-khi-setup-server-ubuntu-linux-moi-tren-cloud/](https://vinguyen.blog/cac-viec-nen-lam-sau-khi-setup-server-ubuntu-linux-moi-tren-cloud/)
 
 ## Settings
 - `target_user`: the name of the new user
@@ -8,12 +9,19 @@
 
 ## Running this Playbook
 
+#### Default variables
+```yml
+necessary_packages: ['curl', 'vim', 'git', 'ufw', 'htop', 'iotop', 'apt-transport-https', 'acl', 'python3-paramiko']
+swap_vars:
+  size: 1G
+  swappiness: 60
+```
+
 Quick Steps:
 
 ### 1. Obtain the playbook
 ```shell
-git clone git@github.com:ngtrieuvi92/ansible-setup-ubuntu-server.git
-cd ansible-playbooks/setup_ubuntu1804
+ansible-galaxy install ngtrieuvi92.setup_ubuntu_sever
 ```
 
 ### 2. Delare host in host.ini file

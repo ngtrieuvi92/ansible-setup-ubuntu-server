@@ -10,8 +10,8 @@
   hosts: sample_server
   become: true
   roles:
-    - setup_ubuntu_server
+    - ngtrieuvi92.setup_ubuntu_sever
   vars:
-    target_user: sammy
+    target_user: rin
     ssh_public_key_paths:
       - ~/.ssh/id_rsa.pub
