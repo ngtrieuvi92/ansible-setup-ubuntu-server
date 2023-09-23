@@ -12,6 +12,6 @@
   roles:
     - setup_ubuntu_server
   vars:
-    target_user: sampy
+    target_user: sammy
     ssh_public_key_paths:
       - ~/.ssh/id_rsa.pub

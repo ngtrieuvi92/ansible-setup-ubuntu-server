@@ -1,5 +1,5 @@
 ---
-necessary_packages: ['curl', 'vim', 'git', 'ufw', 'htop', 'iotop', 'apt-transport-https']
+necessary_packages: ['curl', 'vim', 'git', 'ufw', 'htop', 'iotop', 'apt-transport-https', 'acl']
 local_ssh_config_file: '~/.ssh/config'
 swap_vars:
   size: 1G
